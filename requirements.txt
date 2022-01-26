@@ -1,0 +1,4 @@
+bokeh==2.4.0
+numpy==1.21.2
+gurobipy==9.1.2
+matplotlib==3.4.3

@@ -1,0 +1,11 @@
+## This is an example of specifying instances with a file.
+
+# Each line is an instance relative to trainInstancesDir
+# (see scenario.txt.tmpl) and an optional sequence of instance-specific
+# parameters that will be passed to target-runnerx when invoked on that
+# instance.
+
+# Empty lines and comments are ignored.
+
+# att48.tsp
+# burma14.tsp
