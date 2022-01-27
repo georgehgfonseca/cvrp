@@ -1,7 +1,8 @@
 =========================================================================
    Brief description
 =========================================================================
-Source code of metaheuristics applied to the Cap. Vehicle Routing Problem
+Source code of algorithms and models applied to the Cap. Vehicle Routing 
+Problem
 Developed by Prof. George Fonseca (george@ufop.edu.br)
 PEP300 Metaheuristics applied to Combinatorial Optimization (PPGEP/UFOP)
 Website: <http://professor.ufop.br/george/classes/pep300>
@@ -60,6 +61,8 @@ Params:
   -time_limit <time>    : runtime limit (secs) (default: = twice the num. cities).
   -seed <seed>          : random seed (default: None).
   -verbose <0/1>        : print algorithm logs (0/1) (default: 1).
+  -initial_soln         : path of a file containing an initial solution for the problem (default: None).
+  -output_file          : path where a solution file is going to be written (default: None).
   -lb <value>           : lower bound for this instance (default: 0).
   -output <0/1>         : plot the solution to /output folder (0/1) (default: 1).
   -chart <0/1>          : write convergence chart to /output folder (0/1)  (default: 1).
