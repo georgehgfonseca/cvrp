@@ -162,7 +162,7 @@ class CVRPModel:
     def create_model(self):
         # setting up solver
         try:
-            model = Model("Timetabling", solver_name=GRB)
+            model = Model("CVRP", solver_name=GRB)
         except (InterfacingError, FileNotFoundError):
             print("Gurobi commercial solver is not licenced! Using open source CBC instead.")
             model = Model("Timetabling", solver_name=CBC)
