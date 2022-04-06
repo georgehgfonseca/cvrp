@@ -1,7 +1,7 @@
 import solution
 from cvrp import CVRP
 import numpy as np
-from mip import Var, Model, BINARY, INTEGER, CONTINUOUS, xsum, OptimizationStatus
+from mip import Var, Model, BINARY, INTEGER, CONTINUOUS, xsum, OptimizationStatus, InterfacingError, CBC, GRB
 from itertools import permutations
 import math
 import time
@@ -160,7 +160,12 @@ class CVRPModel:
         return soln, self.model.objective_value, time.time() - t_init, chart_data
 
     def create_model(self):
-        self.model = model = Model("CVRP")
+        # setting up solver
+        try:
+            model = Model("Timetabling", solver_name=GRB)
+        except (InterfacingError, FileNotFoundError):
+            print("Gurobi commercial solver is not licenced! Using open source CBC instead.")
+            model = Model("Timetabling", solver_name=CBC)
 
         # aliases and shortcuts to make code easier to read
         inst, n, v, d, q, dem = self.inst, self.inst.n, self.inst.v, self.inst.d, self.inst.cap, self.inst.dem
