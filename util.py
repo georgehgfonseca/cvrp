@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from bokeh.plotting import figure, show, save, output_file
 import solution
+import cvrp
 
 def read_cvrp(file_path):
     """"Read a CVRP instance in TSPLIB95 format
@@ -45,20 +46,24 @@ def read_cvrp(file_path):
 def read_soln(file_path, inst):
     """"Read a CVRP instance in TSPLIB95 .sol format
     http://comopt.ifi.uni-heidelberg.de/software/TSPLIB95/tsp95.pdf"""
-    file = open(file_path, "r")
-    cap = None
-    s = []
-    fs = 0
-    for line in file:
-        if line[0] == "R":
-            line = line.split(": ")[1].strip()
-            route = [int(x) for x in line.split(" ")]
-            route.insert(0, 0)
-            route.append(0)
-            s.append(route)
-        elif line[0] == "C":
-            fs = float(line.split(" ")[1].strip())
-    soln = solution.Solution(s, fs, None)
+    try:
+        file = open(file_path, "r")
+        cap = None
+        s = []
+        fs = 0
+        for line in file:
+            if line[0] == "R":
+                line = line.split(": ")[1].strip()
+                route = [int(x) for x in line.split(" ")]
+                route.insert(0, 0)
+                route.append(0)
+                s.append(route)
+            elif line[0] == "C":
+                fs = float(line.split(" ")[1].strip())
+        soln = solution.Solution(s, fs, None)
+    except IOError:
+        print("Solution file could not be read.\nAborting execution...")
+        exit(0)
     return soln
 
 def write_soln(file_path, soln):
